@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request; 
-use Illuminate\Http\Response; 
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Traits\ApiResponser;
-use App\Models\Book; 
+use App\Models\Book;
 
 class BookController extends Controller
 {
@@ -20,21 +20,21 @@ class BookController extends Controller
         //
     }
 
-    
+
     /**
      * Returns books list
-     * @return Illuminate\Http\Response 
+     * @return Illuminate\Http\Response
      */
     public function index(){
         $books = Book::all();
-        
+
         return $this->successResponse($books);
     }
 
-    
+
     /**
-     * Create an instance of book 
-     * @return Illuminate\Http\Response 
+     * Create an instance of book
+     * @return Illuminate\Http\Response
      */
     public function store(Request $request){
 
@@ -53,24 +53,24 @@ class BookController extends Controller
     }
 
 
-    
+
     /**
-     * Return an specific book 
-     * @return Illuminate\Http\Response 
+     * Return an specific book
+     * @return Illuminate\Http\Response
      */
     public function show($book){
         $book = Book::findOrFail($book);
 
         return $this->successResponse($book, Response::HTTP_OK);
-    }    
+    }
 
-    
+
     /**
-     * Update the information of an existing book 
-     * @return Illuminate\Http\Response 
+     * Update the information of an existing book
+     * @return Illuminate\Http\Response
      */
     public function update(Request $request, $book_id){
-        
+
         $rules = [
             'title' => 'max:255',
             'description' => 'max:255',
@@ -94,11 +94,11 @@ class BookController extends Controller
     }
 
 
-    
-    
+
+
     /**
-     * Removes an existing book 
-     * @return Illuminate\Http\Response 
+     * Removes an existing book
+     * @return Illuminate\Http\Response
      */
     public function destroy($book_id){
         $book = Book::findOrFail($book_id);
